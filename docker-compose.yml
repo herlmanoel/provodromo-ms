@@ -43,6 +43,15 @@ services:
     depends_on:
       - config-server
 
+  usuario:
+    build:
+      context: ./usuario
+    container_name: usuario
+    # networks:
+    #   - microservices-network
+    depends_on:
+      - config-server
+
 # networks:
 #   microservices-network:
 #     driver: bridge
