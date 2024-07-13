@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    build:
+      context: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    # networks:
+    #   - microservices-network
+
+  apigatewayzuul:
+    build:
+      context: ./apigatewayzuul
+    container_name: apigatewayzuul
+    ports:
+      - "8765:8765"
+    # networks:
+    #   - microservices-network
+    depends_on:
+      - eureka-server
+
+  config-server:
+    build:
+      context: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    # networks:
+    #   - microservices-network
+    depends_on:
+      - apigatewayzuul
+  
+  worker:
+    build:
+      context: ./worker
+    container_name: worker
+    ports:
+      - "8080:8080"
+    # networks:
+    #   - microservices-network
+    depends_on:
+      - config-server
+
+# networks:
+#   microservices-network:
+#     driver: bridge
