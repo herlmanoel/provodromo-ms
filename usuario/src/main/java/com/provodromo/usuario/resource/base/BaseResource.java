@@ -1,10 +1,10 @@
-package com.provodromo.usuario.resources.base;
+package com.provodromo.usuario.resource.base;
 
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-public interface BaseController<RequestDTO, ResponseDTO> {
+public interface BaseResource<RequestDTO, ResponseDTO> {
 
     @GetMapping
     Set<ResponseDTO> listar();

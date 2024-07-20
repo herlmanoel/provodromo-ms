@@ -1,10 +1,10 @@
 package com.provodromo.usuario.services;
 
+import com.provodromo.usuario.domain.TipoUsuario;
+import com.provodromo.usuario.domain.Usuario;
 import com.provodromo.usuario.dto.request.TipoUsuarioRequestDTO;
 import com.provodromo.usuario.dto.request.UsuarioRequestDTO;
 import com.provodromo.usuario.dto.response.UsuarioResponseDTO;
-import com.provodromo.usuario.entities.TipoUsuario;
-import com.provodromo.usuario.entities.Usuario;
 import com.provodromo.usuario.error.exception.RegraNegocioException;
 import com.provodromo.usuario.repository.TipoUsuarioRepository;
 import com.provodromo.usuario.repository.UsuarioRepository;

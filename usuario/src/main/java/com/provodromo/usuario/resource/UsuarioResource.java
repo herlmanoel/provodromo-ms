@@ -1,8 +1,9 @@
- package com.provodromo.usuario.resources;
+ package com.provodromo.usuario.resource;
+
 
  import com.provodromo.usuario.dto.request.UsuarioRequestDTO;
  import com.provodromo.usuario.dto.response.UsuarioResponseDTO;
- import com.provodromo.usuario.resources.base.BaseController;
+ import com.provodromo.usuario.resource.base.BaseResource;
  import com.provodromo.usuario.services.UsuarioService;
  import lombok.AllArgsConstructor;
  import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@
  @RestController
  @RequestMapping(value = "/api/usuario", produces = {"application/json"})
  @AllArgsConstructor
- public class UsuarioController implements BaseController<UsuarioRequestDTO, UsuarioResponseDTO> {
+ public class UsuarioResource implements BaseResource<UsuarioRequestDTO, UsuarioResponseDTO> {
 
      private final UsuarioService usuarioService;
 

@@ -1,8 +1,8 @@
-package com.provodromo.usuario.resources;
+package com.provodromo.usuario.resource;
 
 import com.provodromo.usuario.dto.request.TipoUsuarioRequestDTO;
 import com.provodromo.usuario.dto.response.TipoUsuarioResponseDTO;
-import com.provodromo.usuario.resources.base.BaseController;
+import com.provodromo.usuario.resource.base.BaseResource;
 import com.provodromo.usuario.services.TipoUsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.Set;
 @RestController
 @RequestMapping(value = "/api/tipoUsuario", produces = {"application/json"})
 @AllArgsConstructor
-public class TipoUsuarioController implements BaseController<TipoUsuarioRequestDTO, TipoUsuarioResponseDTO> {
+public class TipoUsuarioResource implements BaseResource<TipoUsuarioRequestDTO, TipoUsuarioResponseDTO> {
 
     private TipoUsuarioService tipoUsuarioService;
 

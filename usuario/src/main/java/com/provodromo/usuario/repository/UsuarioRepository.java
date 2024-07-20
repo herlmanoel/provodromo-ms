@@ -1,7 +1,7 @@
 package com.provodromo.usuario.repository;
 
-import com.provodromo.usuario.entities.TipoUsuario;
-import com.provodromo.usuario.entities.Usuario;
+import com.provodromo.usuario.domain.TipoUsuario;
+import com.provodromo.usuario.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

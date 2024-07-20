@@ -1,12 +1,13 @@
-package com.provodromo.usuario.entities;
+package com.provodromo.usuario.domain;
 
-import com.provodromo.usuario.entities.base.BaseModel;
+import com.provodromo.usuario.domain.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 @Entity

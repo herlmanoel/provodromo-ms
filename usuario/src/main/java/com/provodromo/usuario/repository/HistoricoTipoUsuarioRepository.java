@@ -1,6 +1,6 @@
 package com.provodromo.usuario.repository;
 
-import com.provodromo.usuario.entities.HistoricoTipoUsuario;
+import com.provodromo.usuario.domain.HistoricoTipoUsuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
