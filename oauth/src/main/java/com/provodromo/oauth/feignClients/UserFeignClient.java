@@ -10,10 +10,9 @@ import com.provodromo.oauth.entities.User;
 
 @Component
 // name = "user" -> nome do registro no eureka server
-@FeignClient(name = "user", path ="/users")
+@FeignClient(name = "usuario", path = "/usuario")
 public interface UserFeignClient {
 
     @GetMapping(value = "/search")
 	ResponseEntity<User> findByEmail(@RequestParam String email);
-    
 }

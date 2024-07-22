@@ -2,6 +2,7 @@
 
 
  import com.provodromo.usuario.dto.request.UsuarioRequestDTO;
+ import com.provodromo.usuario.dto.response.UsuarioCompleteResponseDTO;
  import com.provodromo.usuario.dto.response.UsuarioResponseDTO;
  import com.provodromo.usuario.resource.base.BaseResource;
  import com.provodromo.usuario.services.UsuarioService;
@@ -13,7 +14,7 @@
  import java.util.Set;
 
  @RestController
- @RequestMapping(value = "/api/usuario", produces = {"application/json"})
+ @RequestMapping(value = "/usuario", produces = {"application/json"})
  @AllArgsConstructor
  public class UsuarioResource implements BaseResource<UsuarioRequestDTO, UsuarioResponseDTO> {
 
@@ -23,6 +24,12 @@
      @Override
      public Set<UsuarioResponseDTO> listar() {
          return usuarioService.findAll();
+     }
+
+     @GetMapping("/search")
+     @ResponseStatus(HttpStatus.OK)
+     public UsuarioCompleteResponseDTO buscarPorEmail(@RequestParam String email) {
+        return usuarioService.buscarPorEmail(email);
      }
 
      @PostMapping

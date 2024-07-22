@@ -4,6 +4,7 @@ import com.provodromo.usuario.domain.TipoUsuario;
 import com.provodromo.usuario.domain.Usuario;
 import com.provodromo.usuario.dto.request.TipoUsuarioRequestDTO;
 import com.provodromo.usuario.dto.request.UsuarioRequestDTO;
+import com.provodromo.usuario.dto.response.UsuarioCompleteResponseDTO;
 import com.provodromo.usuario.dto.response.UsuarioResponseDTO;
 import com.provodromo.usuario.error.exception.RegraNegocioException;
 import com.provodromo.usuario.repository.TipoUsuarioRepository;
@@ -88,7 +89,7 @@ public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioRes
         return convertToUsuarioResponseDTO(usuarioSaved);
     }
 
-    public UsuarioResponseDTO buscarPorEmail(String email) {
+    public UsuarioCompleteResponseDTO buscarPorEmail(String email) {
         if (email == null) {
             throw new IllegalArgumentException("E-mail não pode ser nulo");
         }
@@ -97,7 +98,7 @@ public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioRes
         if (usuario == null) {
             throw new RegraNegocioException("Usuário não encontrado com o e-mail: " + email);
         }
-        return convertToUsuarioResponseDTO(usuario);
+        return convertToUsuarioCompleteResponseDTO(usuario);
     }
 
     private UsuarioResponseDTO convertToUsuarioResponseDTO(Usuario usuario) {
@@ -111,6 +112,22 @@ public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioRes
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
+                tipoUsuarioNome
+        );
+    }
+
+    private UsuarioCompleteResponseDTO convertToUsuarioCompleteResponseDTO(Usuario usuario) {
+        if (usuario == null) {
+            return null;
+        }
+
+        String tipoUsuarioNome = (usuario.getTipoUsuario() != null) ? usuario.getTipoUsuario().getNome() : "Indefinido";
+
+        return new UsuarioCompleteResponseDTO(
+                usuario.getId(),
+                usuario.getNome(),
+                usuario.getEmail(),
+                usuario.getSenha(),
                 tipoUsuarioNome
         );
     }
