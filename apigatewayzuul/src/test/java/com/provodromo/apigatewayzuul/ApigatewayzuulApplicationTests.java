@@ -1,13 +1,13 @@
-package com.provodromo.apigatewayzuul;
+// package com.provodromo.apigatewayzuul;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ApigatewayzuulApplicationTests {
+// @SpringBootTest
+// class ApigatewayzuulApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }

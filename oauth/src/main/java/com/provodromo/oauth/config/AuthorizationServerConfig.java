@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Value("${oauth.client.name}")
     private String clientName;
@@ -42,18 +42,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-        .withClient(clientName)
-        .secret(passwordEncoder.encode(clientSecret))
-        .scopes("read","write")
-        .accessTokenValiditySeconds(86400);
+        clients
+            .inMemory()
+            .withClient(clientName)
+            .secret(passwordEncoder.encode(clientSecret))
+            .scopes("read","write")
+            .accessTokenValiditySeconds(86400);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager)
-        .tokenStore(tokenStore)
-        .accessTokenConverter(accessTokenConverter);
+        endpoints
+            .authenticationManager(authenticationManager)
+            .tokenStore(tokenStore)
+            .accessTokenConverter(accessTokenConverter);
     }
     
     

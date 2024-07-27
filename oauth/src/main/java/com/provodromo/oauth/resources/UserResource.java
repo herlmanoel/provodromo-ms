@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.provodromo.oauth.services.UserService;
 
-import java.util.logging.Logger;
-
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
-	private static Logger logger = (Logger) LoggerFactory.getLogger(UserResource.class);
 
     @Autowired
 	private UserService service;
