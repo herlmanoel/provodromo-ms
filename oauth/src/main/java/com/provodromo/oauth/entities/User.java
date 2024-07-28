@@ -18,22 +18,36 @@ public class User implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String name;
+	private String nome;
 	private String email;
 	private String password;
-	
+	private String tipoUsuario;
+
+
 
 	private Set<Role> roles = new HashSet<>();
 	
 	public User() {
 	}
 
-	public User(Long id, String name, String email, String password) {
+	public User(Long id, String nome, String email, String password) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 		this.email = email;
 		this.password = password;
+	}
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -44,12 +58,12 @@ public class User implements UserDetails, Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -99,11 +113,7 @@ public class User implements UserDetails, Serializable {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return roles.stream()
-		.map(x -> 
-		new SimpleGrantedAuthority(
-			x.getRoleName()))
-			.collect(Collectors.toList());
+		return Set.of(new SimpleGrantedAuthority(this.tipoUsuario));
 	}
 
 	@Override

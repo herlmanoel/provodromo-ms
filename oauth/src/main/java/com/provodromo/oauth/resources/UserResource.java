@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.provodromo.oauth.services.UserService;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
+
+	private static final Logger logger = LogManager.getLogger(UserResource.class);
 
     @Autowired
 	private UserService service;
@@ -23,6 +26,9 @@ public class UserResource {
 	public ResponseEntity<User> findByEmail(@RequestParam String email) {
 		try {
 			User user = service.findByEmail(email);
+
+			logger.info(" findByEmail = {} ", user);
+
 			return ResponseEntity.ok(user);
 		}
 		catch (IllegalArgumentException e) {

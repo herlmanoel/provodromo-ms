@@ -5,7 +5,6 @@ INSERT INTO tb_tipo_usuario (id, nome) VALUES (3, 'ROLE_MODERADOR');
 INSERT INTO tb_tipo_usuario (id, nome) VALUES (4, 'ROLE_CONVIDADO');
 INSERT INTO tb_tipo_usuario (id, nome) VALUES (5, 'ROLE_VISITANTE');
 INSERT INTO tb_tipo_usuario (id, nome) VALUES (6, 'ROLE_PROFESSOR');
-
 -- Inserindo os usuários
 INSERT INTO tb_usuario (id, nome, email, senha, tipo_usuario_id) VALUES (1, 'João Silva', 'joao.silva@example.com', '$2a$10$NYFZ/8WaQ3Qb6FCs.00jce4nxX9w7AkgWVsQCG6oUwTAcZqP9Flqu', 1);
 INSERT INTO tb_usuario (id, nome, email, senha, tipo_usuario_id) VALUES (2, 'Guilherme', 'Guilherme@example.com', '$2a$10$NYFZ/8WaQ3Qb6FCs.00jce4nxX9w7AkgWVsQCG6oUwTAcZqP9Flqu', 6);
