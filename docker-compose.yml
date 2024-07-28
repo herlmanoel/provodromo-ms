@@ -20,6 +20,10 @@ services:
       - "8765:8765"
     depends_on:
       - eureka-server
+    environment:
+      - OAUTH_CLIENT_NAME=myappname123
+      - OAUTH_CLIENT_SECRET=myappname123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
 
   config-server:
     build:
@@ -31,7 +35,7 @@ services:
       - "8888:8888"
     depends_on:
       - eureka-server
-  
+
   worker:
     build:
       context: ./worker
@@ -42,6 +46,8 @@ services:
       - "8080:8080"
     depends_on:
       - config-server
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
 
   usuario:
     build:
@@ -53,7 +59,9 @@ services:
       - config-server
       - eureka-server
       - apigatewayzuul
-  
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
+
   oauth:
     build:
       context: ./oauth
@@ -64,3 +72,7 @@ services:
       - config-server
       - eureka-server
       - apigatewayzuul
+    environment:
+      - OAUTH_CLIENT_NAME=myappname123
+      - OAUTH_CLIENT_SECRET=myappname123
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
