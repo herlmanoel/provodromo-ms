@@ -96,3 +96,7 @@ services:
       - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
     environment:
       POSTGRES_PASSWORD: "provodromo_pass"
+      POSTGRES_USER: "admin"
+      POSTGRES_DB: "db_provodromo"
+    ports:
+        - "5433:5432"

@@ -1,6 +1,5 @@
 package com.provodromo.apigatewayzuul.config;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
@@ -27,6 +25,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
     private static final String[] PUBLIC = {"/oauth/oauth/token"};
     private static final String[] USUARIO = {"/usuario/**"};
+    private static final String[] INSTITUCIONAL = {"/institucional/**"};
+    private static final String[] PROVODROMO = {"/provodromo/**"};
+
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -43,6 +44,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .antMatchers(HttpMethod.POST, USUARIO).hasAnyRole("ADMINISTRADOR")
                 .antMatchers(HttpMethod.PUT, USUARIO).hasAnyRole("MODERADOR", "ADMINISTRADOR")
                 .antMatchers(HttpMethod.DELETE, USUARIO).hasRole("ADMINISTRADOR")
+                // Institucional
+                .antMatchers(HttpMethod.GET, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(HttpMethod.POST, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(HttpMethod.PUT, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(HttpMethod.DELETE, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                // Provodrmo
+                .antMatchers(HttpMethod.GET, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(HttpMethod.POST, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(HttpMethod.PUT, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(HttpMethod.DELETE, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
                 .anyRequest().authenticated())
                 .addFilterBefore(new CustomLoggingFilter(), UsernamePasswordAuthenticationFilter.class);
 
