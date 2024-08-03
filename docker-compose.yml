@@ -36,19 +36,6 @@ services:
     depends_on:
       - eureka-server
 
-  worker:
-    build:
-      context: ./worker
-    container_name: worker
-    volumes:
-      - ~/.m2:/root/.m2
-    ports:
-      - "8080:8080"
-    depends_on:
-      - config-server
-    environment:
-      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
-
   usuario:
     build:
       context: ./usuario
@@ -59,8 +46,25 @@ services:
       - config-server
       - eureka-server
       - apigatewayzuul
+      - postgres-db
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
+      - DB_PASSWORD=provodromo_pass
+
+  provodromo:
+    build:
+      context: ./provodromo
+    container_name: provodromo
+    volumes:
+      - ~/.m2:/root/.m2
+    depends_on:
+      - config-server
+      - eureka-server
+      - apigatewayzuul
+      - postgres-db
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
+      - DB_PASSWORD=provodromo_pass
 
   oauth:
     build:
@@ -76,3 +80,10 @@ services:
       - OAUTH_CLIENT_NAME=myappname123
       - OAUTH_CLIENT_SECRET=myappname123
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  postgres-db:
+    image: postgres
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    environment:
+      POSTGRES_PASSWORD: "provodromo_pass"
