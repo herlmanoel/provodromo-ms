@@ -1,0 +1,12 @@
+version: '1.1'
+
+services:
+  sampleproject:
+    image: provodromo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:8080
