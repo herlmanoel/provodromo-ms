@@ -81,6 +81,15 @@ services:
       - OAUTH_CLIENT_SECRET=myappname123
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
 
+  provodromo-front:
+    build:
+      context: ./provodromo-front
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+  
   postgres-db:
     image: postgres
     volumes:
