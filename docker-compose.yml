@@ -66,6 +66,22 @@ services:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
       - DB_PASSWORD=provodromo_pass
 
+  institucional:
+    build:
+      context: ./institucional
+    container_name: institucional
+    volumes:
+      - ~/.m2:/root/.m2
+    depends_on:
+      - config-server
+      - eureka-server
+      - apigatewayzuul
+      - postgres-db
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
+      - DB_PASSWORD=provodromo_pass
+
+
   oauth:
     build:
       context: ./oauth
