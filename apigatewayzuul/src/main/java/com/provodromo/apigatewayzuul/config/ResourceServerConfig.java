@@ -40,20 +40,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
         http.authorizeRequests(requests -> requests
                 .antMatchers(PUBLIC).permitAll()
                 // Usuário
-                .antMatchers(HttpMethod.GET, USUARIO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.POST, USUARIO).hasAnyRole("ADMINISTRADOR")
-                .antMatchers(HttpMethod.PUT, USUARIO).hasAnyRole("MODERADOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.DELETE, USUARIO).hasRole("ADMINISTRADOR")
+                .antMatchers(USUARIO).hasAnyRole("Professor", "Aluno")
                 // Institucional
-                .antMatchers(HttpMethod.GET, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.POST, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.PUT, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.DELETE, INSTITUCIONAL).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(INSTITUCIONAL).hasAnyRole("Professor", "Aluno")
                 // Provodrmo
-                .antMatchers(HttpMethod.GET, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.POST, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.PUT, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
-                .antMatchers(HttpMethod.DELETE, PROVODROMO).hasAnyRole("COMUM", "MODERADOR", "CONVIDADO", "VISITANTE", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers(PROVODROMO).hasAnyRole("Professor", "Aluno")
                 .anyRequest().authenticated())
                 .addFilterBefore(new CustomLoggingFilter(), UsernamePasswordAuthenticationFilter.class);
 

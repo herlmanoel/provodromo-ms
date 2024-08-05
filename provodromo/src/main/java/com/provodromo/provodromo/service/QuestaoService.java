@@ -96,8 +96,6 @@ public class QuestaoService implements BaseService<QuestaoRequestDTO, QuestaoRes
         return new QuestaoResponseDTO(
                 questao.getId(),
                 questao.getTexto(),
-                questao.getDificuldade(),
-                questao.getNota(),
                 alternativasResponseDTO
         );
     }
@@ -110,8 +108,6 @@ public class QuestaoService implements BaseService<QuestaoRequestDTO, QuestaoRes
         Questao questao = new Questao();
         questao.setId(questaoRequestDTO.getId());
         questao.setTexto(questaoRequestDTO.getTexto());
-        questao.setDificuldade(questaoRequestDTO.getDificuldade());
-        questao.setNota(questaoRequestDTO.getNota());
         if (questaoRequestDTO.getAlternativas() != null) {
             List<Alternativa> alternativas = questaoRequestDTO.getAlternativas().stream()
                     .map(this::convertToAlternativa)

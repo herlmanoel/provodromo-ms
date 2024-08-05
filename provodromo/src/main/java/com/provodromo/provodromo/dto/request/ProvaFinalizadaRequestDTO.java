@@ -1,19 +1,17 @@
 package com.provodromo.provodromo.dto.request;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class QuestaoRequestDTO {
+public class ProvaFinalizadaRequestDTO {
     private Long id;
-    private String texto;
-    private List<AlternativaRequestDTO> alternativas = new ArrayList<>();
+    private Long provaId;
+    private Long usuarioId;
+    private Set<Long> alternativasIds;
 }

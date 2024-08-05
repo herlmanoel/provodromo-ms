@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "tb_prova")
 @Data
@@ -15,11 +16,9 @@ public class Prova extends BaseModel {
 
     private String titulo;
 
-    @ManyToOne
-    @JoinColumn(name = "turma_id")
-    private Turma turma;
+    private Long turmaId;
 
-    private int nota;
+    private Long nota;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -30,9 +29,9 @@ public class Prova extends BaseModel {
     @EqualsAndHashCode.Exclude
     private Set<Questao> questoes = new HashSet<>();
 
-    public Prova(String titulo, Turma turma, int nota, Set<Questao> questoes) {
+    public Prova(String titulo, Long turmaId, Long nota, Set<Questao> questoes) {
         this.titulo = titulo;
-        this.turma = turma;
+        this.turmaId = turmaId;
         this.nota = nota;
         this.questoes = questoes;
     }

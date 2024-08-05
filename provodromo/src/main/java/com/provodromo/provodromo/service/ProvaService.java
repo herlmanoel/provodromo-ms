@@ -6,7 +6,6 @@ import com.provodromo.provodromo.model.Prova;
 import com.provodromo.provodromo.model.Questao;
 import com.provodromo.provodromo.repository.ProvaRepository;
 import com.provodromo.provodromo.repository.QuestaoRepository;
-import com.provodromo.provodromo.repository.TurmaRepository;
 import com.provodromo.provodromo.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,8 +18,6 @@ public class ProvaService implements BaseService<ProvaRequestDTO, ProvaResponseD
 
     @Autowired
     private ProvaRepository provaRepository;
-    @Autowired
-    private TurmaRepository turmaRepository;
     @Autowired
     private QuestaoRepository questaoRepository;
 
@@ -81,7 +78,7 @@ public class ProvaService implements BaseService<ProvaRequestDTO, ProvaResponseD
         return new ProvaResponseDTO(
                 prova.getId(),
                 prova.getTitulo(),
-                prova.getTurma().getId(),
+                prova.getTurmaId(),
                 prova.getNota(),
                 questoesIds
         );
@@ -94,7 +91,7 @@ public class ProvaService implements BaseService<ProvaRequestDTO, ProvaResponseD
 
         Prova prova = new Prova();
         prova.setId(provaRequestDTO.getId());
-        prova.setTurma(turmaRepository.findById(provaRequestDTO.getTurmaId()).orElseThrow(() -> new RuntimeException("Turma não encontrada com o id: " + provaRequestDTO.getTurmaId())));
+        prova.setTurmaId(provaRequestDTO.getTurmaId());
         prova.setNota(provaRequestDTO.getNota());
         prova.setTitulo(provaRequestDTO.getTitulo());
         prova.setQuestoes(provaRequestDTO.getQuestoesIds().stream()

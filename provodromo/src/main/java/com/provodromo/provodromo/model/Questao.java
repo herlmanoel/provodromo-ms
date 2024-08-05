@@ -18,8 +18,6 @@ import java.util.List;
 public class Questao extends BaseModel {
 
     private String texto;
-    private String dificuldade;
-    private double nota;
 
     @OneToMany(mappedBy = "questao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Alternativa> alternativas = new ArrayList<>();

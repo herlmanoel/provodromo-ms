@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class QuestaoResponseDTO {
+public class ProvaFinalizadaResponseDTO {
     private Long id;
-    private String texto;
-    private List<AlternativaResponseDTO> alternativas = new ArrayList<>();
+    private Long provaId;
+    private Long usuarioId;
+    private Long nota;
 }

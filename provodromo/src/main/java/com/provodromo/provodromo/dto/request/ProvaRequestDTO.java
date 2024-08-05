@@ -13,6 +13,6 @@ public class ProvaRequestDTO {
     private Long id;
     private String titulo;
     private Long turmaId;
-    private int nota;
+    private Long nota;
     private Set<Long> questoesIds;
 }
