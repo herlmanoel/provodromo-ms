@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/professor", produces = {"application/json"})
+@RequestMapping(value = "/api/professor", produces = {"application/json"})
 @AllArgsConstructor
 public class ProfessorResource implements BaseResource<ProfessorRequestDTO, ProfessorResponseDTO> {
     private final ProfessorService professorService;

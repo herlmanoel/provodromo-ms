@@ -8,7 +8,7 @@ const UserTypeList = () => {
     const [error, setError] = useState(null);
 
     const fetchUserTypes = useCallback(() => {
-        UserService.getUserTypes()
+        UserService.getUsers()
             .then(response => setUserTypes(response))
             .catch(err => setError(err));
     }, []);

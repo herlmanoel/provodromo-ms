@@ -14,7 +14,7 @@
  import java.util.Set;
 
  @RestController
- @RequestMapping(value = "/aluno", produces = {"application/json"})
+ @RequestMapping(value = "/api/aluno", produces = {"application/json"})
  @AllArgsConstructor
  public class AlunoResource implements BaseResource<AlunoRequestDTO, AlunoResponseDTO> {
      private final AlunoService alunoService;
@@ -48,7 +48,7 @@
 
      @PutMapping("/{alunoId}/materia/{turmaId}")
      @ResponseStatus(HttpStatus.OK)
-     public AlunoCompleteResponseDTO associarMateria(@PathVariable Long alunoId, @PathVariable Long turmaId) {
+     public AlunoCompleteResponseDTO associarTurma(@PathVariable Long alunoId, @PathVariable Long turmaId) {
          return alunoService.associarTurma(alunoId, turmaId);
      }
 

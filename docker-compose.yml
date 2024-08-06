@@ -100,12 +100,15 @@ services:
   provodromo-front:
     build:
       context: ./provodromo-front
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: 'true'
     ports:
-      - "3000:3000"
-  
+      - "3000:3000" # Mapeia a porta 3000 do contêiner para a porta 3000 do host
+    volumes:
+      - ./provodromo-front:/app
+
   postgres-db:
     image: postgres
     volumes:

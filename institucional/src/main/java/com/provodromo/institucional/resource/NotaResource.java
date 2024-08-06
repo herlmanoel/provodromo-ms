@@ -15,7 +15,7 @@
  import java.util.Set;
 
  @RestController
- @RequestMapping(value = "/nota", produces = {"application/json"})
+ @RequestMapping(value = "/api/nota", produces = {"application/json"})
  @AllArgsConstructor
  public class NotaResource implements BaseResource<NotaRequestDTO, NotaResponseDTO> {
      private final NotaService notaService;

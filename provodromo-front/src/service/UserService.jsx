@@ -1,18 +1,16 @@
 import axios from 'axios';
 
 const API = axios.create({
-   baseURL: '',  // Defina o URL base da API
+   baseURL: 'http://localhost:8765/usuario',  // Defina o URL base da sua API ou do seu API Gateway
    headers: {
-      'Content-Type': 'application/json',
-      // Adicione outros headers necessários, como tokens de autenticação
-      // 'Authorization': `Bearer ${token}`
+      'Content-Type': 'application/x-www-form-urlencoded',
    }
 });
 
 const UserService = {
    getUserTypes: async (id) => {
       try {
-         const response = await API.get(`/user/types`);
+         const response = await API.get(`/api/tipoUsuario`);
          return response.data;
       } catch (error) {
          console.error('Erro ao buscar tipo de usuário:', error);
@@ -29,6 +27,7 @@ const UserService = {
          throw error;
       }
    },
+
    postUsers: async (obj) => await API.post(`/user`, obj),
    postType: async (obj) => {
       try {

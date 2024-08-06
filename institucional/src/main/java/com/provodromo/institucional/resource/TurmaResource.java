@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/turma", produces = {"application/json"})
+@RequestMapping(value = "/api/turma", produces = {"application/json"})
 @AllArgsConstructor
 public class TurmaResource implements BaseResource<TurmaRequestDTO, TurmaResponseDTO> {
     private final TurmaService turmaService;
