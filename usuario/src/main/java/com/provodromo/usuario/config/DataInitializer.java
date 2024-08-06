@@ -20,6 +20,20 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if (tipoUsuarioRepository.findByNome("Coordenador") == null) {
+            // TipoUsuario Coordenador
+            TipoUsuario tipoUsuarioCoordenador = new TipoUsuario();
+            tipoUsuarioCoordenador.setNome("Coordenador");
+            tipoUsuarioRepository.save(tipoUsuarioCoordenador);
+        }
+
+        if (tipoUsuarioRepository.findByNome("Admin") == null) {
+            // TipoUsuario Admin
+            TipoUsuario tipoUsuarioAdmin = new TipoUsuario();
+            tipoUsuarioAdmin.setNome("Admin");
+            tipoUsuarioRepository.save(tipoUsuarioAdmin);
+        }
+
         if (usuarioRepository.count() > 0) {
             return;
         }
