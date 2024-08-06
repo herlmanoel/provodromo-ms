@@ -1,20 +1,20 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthService from "../service/AuthService.jsx";
-import Button from "../components/Button.jsx"; // Para navegação programática
+import Button from "../components/Button.jsx";
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
-    const navigate = useNavigate(); // Usado para navegação programática
+    const navigate = useNavigate();
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
         try {
             await AuthService.login(email, password);
-            setLoginSuccess(true); // Atualiza o estado para indicar sucesso
+            setLoginSuccess(true);
         } catch (err) {
             setError('Falha ao fazer login. Verifique suas credenciais.');
         }
@@ -22,7 +22,7 @@ function Login() {
 
     useEffect(() => {
         if (loginSuccess) {
-            navigate('/dashboard'); // Redireciona após login bem-sucedido
+            navigate('/dashboard');
         }
     }, [loginSuccess, navigate]);
 

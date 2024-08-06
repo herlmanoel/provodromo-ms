@@ -3,32 +3,18 @@ import axios from 'axios';
 // Adicione as credenciais do cliente
 const CLIENT_ID = 'myappname123';
 const CLIENT_SECRET = 'myappname123';
-const AUTH_HEADER = `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`;
-
+const AUTH_HEADER = "Basic bXlhcHBuYW1lMTIzOm15YXBwbmFtZTEyMw==";
 
 const API = axios.create({
-    baseURL: 'http://localhost:8765',  // Defina o URL base da sua API ou do seu API Gateway
+    baseURL: 'http://localhost:8765',  // URL base do seu API Gateway (Zuul)
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': AUTH_HEADER, // Adicione seu cabeçalho de autenticação se necessário
-
+        'Authorization': AUTH_HEADER,
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive'
     }
 });
-
-
-// Interceptor para adicionar o token JWT à autorização
-API.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('accessToken'); // Supondo que você armazene o token JWT em localStorage
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
 
 const AuthService = {
     // Método para login
@@ -41,9 +27,11 @@ const AuthService = {
             }), {
                 headers: {
                     'Authorization': AUTH_HEADER,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            localStorage.setItem('accessToken', response.data.access_token); // Ajuste conforme o nome do campo retornado
+
+            localStorage.setItem('accessToken', response.data.access_token);
             return response.data;
         } catch (error) {
             console.error('Erro ao fazer login:', error);

@@ -39,6 +39,10 @@
          return alunoService.findById(id);
      }
 
+     @GetMapping("/comp/{id}")
+     @ResponseStatus(HttpStatus.OK)
+     public AlunoCompleteResponseDTO buscarComplete(@PathVariable Long id) {return alunoService.findCompleteById(id);}
+
      @DeleteMapping("/{id}")
      @ResponseStatus(HttpStatus.NO_CONTENT)
      @Override
@@ -46,7 +50,7 @@
          alunoService.deleteById(id);
      }
 
-     @PutMapping("/{alunoId}/materia/{turmaId}")
+     @PutMapping("/{alunoId}/turma/{turmaId}")
      @ResponseStatus(HttpStatus.OK)
      public AlunoCompleteResponseDTO associarTurma(@PathVariable Long alunoId, @PathVariable Long turmaId) {
          return alunoService.associarTurma(alunoId, turmaId);

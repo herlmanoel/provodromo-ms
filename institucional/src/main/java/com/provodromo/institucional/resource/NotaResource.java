@@ -40,6 +40,12 @@
          return notaService.findById(id);
      }
 
+     @GetMapping("/comp/{id}")
+     @ResponseStatus(HttpStatus.OK)
+     public NotaCompleteResponseDTO buscarComplete(@PathVariable Long id) {
+         return notaService.findCompleteById(id);
+     }
+
      @DeleteMapping("/{id}")
      @ResponseStatus(HttpStatus.NO_CONTENT)
      @Override

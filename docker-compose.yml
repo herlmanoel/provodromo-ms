@@ -105,7 +105,7 @@ services:
       NODE_ENV: development
       CHOKIDAR_USEPOLLING: 'true'
     ports:
-      - "3000:3000" # Mapeia a porta 3000 do contêiner para a porta 3000 do host
+      - "3000:3000"
     volumes:
       - ./provodromo-front:/app
 

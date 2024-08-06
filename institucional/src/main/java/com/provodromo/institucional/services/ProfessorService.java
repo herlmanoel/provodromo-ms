@@ -25,7 +25,7 @@ public class ProfessorService implements BaseService<ProfessorRequestDTO, Profes
 
     @Override
     public ProfessorResponseDTO findById(Long id) {
-        Professor professor = professorRepository.findById(id)
+        Professor professor = professorRepository.findByUsuarioId(id)
                 .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID: " + id));
 
         Usuario usuario = usuarioService.findUsuarioById(professor.getUsuarioId());
@@ -71,14 +71,6 @@ public class ProfessorService implements BaseService<ProfessorRequestDTO, Profes
             throw new RegraNegocioException("Professor não encontrado com o ID: " + id);
         }
         professorRepository.deleteById(id);
-    }
-
-    @Transactional
-    public void deleteByUsuarioId(Long usuarioid) {
-        if (!professorRepository.existsByUsuarioId(usuarioid)) {
-            throw new RegraNegocioException("Professor não encontrado com o usuario ID: " + usuarioid);
-        }
-        professorRepository.deleteByUsuarioId(usuarioid);
     }
 
     private ProfessorResponseDTO createOrUpdate(ProfessorRequestDTO dto) {

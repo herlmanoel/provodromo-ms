@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "usuario", path = "/usuario")
 public interface UsuarioFeignClient {
     @GetMapping(value = "/{id}")
-    ResponseEntity<Usuario> findUsuarioById(@RequestParam Long id);
+    Usuario buscar(@RequestParam Long id);
 }

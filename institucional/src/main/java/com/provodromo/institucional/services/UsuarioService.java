@@ -15,7 +15,7 @@ public class UsuarioService {
     private UsuarioFeignClient usuarioFeignClient;
 
     public Usuario findUsuarioById(Long id) {
-        Usuario usuario = usuarioFeignClient.findUsuarioById(id).getBody();
+        Usuario usuario = usuarioFeignClient.buscar(id);
         if (usuario == null) {
             logger.error("Usuario not found: " + id);
             throw new IllegalArgumentException("Usuario not found");

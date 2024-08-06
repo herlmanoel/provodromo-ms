@@ -1,6 +1,7 @@
 package com.provodromo.institucional.resource;
 
 import com.provodromo.institucional.dto.request.ProfessorRequestDTO;
+import com.provodromo.institucional.dto.response.ProfessorCompleteResponseDTO;
 import com.provodromo.institucional.dto.response.ProfessorResponseDTO;
 import com.provodromo.institucional.resource.base.BaseResource;
 import com.provodromo.institucional.services.ProfessorService;
@@ -36,6 +37,12 @@ public class ProfessorResource implements BaseResource<ProfessorRequestDTO, Prof
     @Override
     public ProfessorResponseDTO buscar(@PathVariable Long id) {
         return professorService.findById(id);
+    }
+
+    @GetMapping("/comp/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProfessorCompleteResponseDTO buscarComplete(@PathVariable Long id) {
+        return professorService.findCompleteById(id);
     }
 
     @DeleteMapping("/{id}")
