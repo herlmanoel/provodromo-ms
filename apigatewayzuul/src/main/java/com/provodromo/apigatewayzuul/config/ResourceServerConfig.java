@@ -40,11 +40,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
         http.authorizeRequests(requests -> requests
                 .antMatchers(PUBLIC).permitAll()
                 // Usuário
-                .antMatchers(USUARIO).hasAnyRole("Professor", "Aluno")
+                .antMatchers(USUARIO).permitAll()
                 // Institucional
-                .antMatchers(INSTITUCIONAL).hasAnyRole("Professor", "Aluno")
+                .antMatchers(INSTITUCIONAL).permitAll()
                 // Provodrmo
-                .antMatchers(PROVODROMO).hasAnyRole("Professor", "Aluno")
+                .antMatchers(PROVODROMO).permitAll()
                 .anyRequest().authenticated())
                 .addFilterBefore(new CustomLoggingFilter(), UsernamePasswordAuthenticationFilter.class);
 
